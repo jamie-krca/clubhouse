@@ -1,0 +1,763 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #fff;
+  color: #111;
+  font-family: 'Noto Sans KR', sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}
+
+.wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 44px;
+}
+
+/* GNB */
+.gnb {
+  border-bottom: 1px solid #ededed;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.gnb-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 44px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gnb-logo {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 700;
+  font-size: 19px;
+  color: #111;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.gnb-sub-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  background: #111;
+  border: none;
+  padding: 9px 20px;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: background 0.18s ease;
+}
+
+.gnb-sub-btn:hover {
+  background: #3a3a3a;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 44px 30px;
+  padding: 56px 0 72px;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.card-thumb {
+  width: 100%;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  background: #f2f2f0;
+  margin-bottom: 14px;
+}
+
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+
+.card-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #e9ecee;
+}
+
+.card:hover .card-thumb img,
+.card:hover .card-thumb-placeholder {
+  transform: scale(1.03);
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.55;
+  color: #111;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+  transition: color 0.2s ease;
+}
+
+.card:hover .card-title {
+  color: #666;
+}
+
+/* PAGINATION */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding-bottom: 80px;
+}
+
+.pg-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #e3e3e3;
+  background: #fff;
+  color: #b0b0b0;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.18s ease;
+}
+
+.pg-btn.active {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.pg-btn:hover:not(.active) {
+  border-color: #111;
+  color: #111;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid #ededed;
+}
+
+.footer-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 36px 44px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.footer-logo {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.footer-tagline {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: #bbb;
+}
+
+.footer-recent-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c4c4c4;
+  margin-bottom: 14px;
+}
+
+.footer-recent a {
+  display: block;
+  font-size: 13px;
+  color: #888;
+  text-decoration: none;
+  margin-bottom: 9px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  word-break: keep-all;
+  line-height: 1.45;
+  transition: color 0.18s ease;
+}
+
+.footer-recent a:hover {
+  color: #111;
+}
+
+.footer-bottom {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 18px 44px 26px;
+  border-top: 1px solid #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-copy {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: #c4c4c4;
+}
+
+.footer-contact {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.footer-contact:hover {
+  color: #111;
+}
+
+/* MODAL */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal {
+  background: #fff;
+  padding: 44px 44px 40px;
+  width: 420px;
+  max-width: calc(100vw - 40px);
+  position: relative;
+}
+
+.modal-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #111;
+}
+
+.modal-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 26px;
+  line-height: 1.6;
+}
+
+.modal-input {
+  width: 100%;
+  height: 44px;
+  border: 1px solid #e0e0e0;
+  padding: 0 14px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  color: #111;
+  outline: none;
+  margin-bottom: 10px;
+  transition: border-color 0.18s ease;
+}
+
+.modal-input:focus {
+  border-color: #111;
+}
+
+.modal-input.error {
+  border-color: #e33;
+}
+
+.modal-submit {
+  width: 100%;
+  height: 44px;
+  background: #111;
+  color: #fff;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.modal-submit:hover {
+  background: #3a3a3a;
+}
+
+.modal-submit:disabled {
+  background: #888;
+  cursor: not-allowed;
+}
+
+.modal-close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 18px;
+  color: #ccc;
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: #111;
+}
+
+.modal-done {
+  text-align: center;
+  padding: 20px 0 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #111;
+  line-height: 1.8;
+}
+
+/* LANDING */
+.landing {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+}
+
+.landing-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #111;
+}
+
+.landing-sub {
+  font-size: 15px;
+  color: #888;
+  margin-bottom: 48px;
+}
+
+.landing-links {
+  display: flex;
+  gap: 24px;
+}
+
+.landing-link {
+  padding: 20px 48px;
+  border: 1px solid #e3e3e3;
+  font-size: 15px;
+  font-weight: 500;
+  color: #111;
+  transition: all 0.18s ease;
+}
+
+.landing-link:hover {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
+
+/* ARTICLE DETAIL */
+.article-detail {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+
+.article-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 32px;
+  color: #111;
+  word-break: keep-all;
+}
+
+.article-thumb {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  margin-bottom: 40px;
+  background: #f2f2f0;
+}
+
+.article-content {
+  font-size: 16px;
+  line-height: 1.85;
+  color: #333;
+  word-break: keep-all;
+}
+
+.article-content p {
+  margin-bottom: 1.5em;
+}
+
+.article-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5em 0;
+}
+
+.article-footer {
+  margin-top: 60px;
+  padding-top: 32px;
+  border-top: 1px solid #ededed;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border: 1px solid #e3e3e3;
+  background: #fff;
+  font-size: 13px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.copy-btn:hover {
+  border-color: #111;
+  color: #111;
+}
+
+.article-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid #f4f4f4;
+}
+
+.article-nav a {
+  font-size: 13px;
+  color: #888;
+  transition: color 0.18s ease;
+}
+
+.article-nav a:hover {
+  color: #111;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 24px;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.back-link:hover {
+  color: #111;
+}
+
+/* ADMIN */
+.admin-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.admin-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.admin-login {
+  max-width: 360px;
+  margin: 80px auto;
+}
+
+.admin-login input {
+  width: 100%;
+  height: 44px;
+  border: 1px solid #e0e0e0;
+  padding: 0 14px;
+  font-size: 14px;
+  margin-bottom: 12px;
+  outline: none;
+}
+
+.admin-login input:focus {
+  border-color: #111;
+}
+
+.admin-login button {
+  width: 100%;
+  height: 44px;
+  background: #111;
+  color: #fff;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.admin-login button:hover {
+  background: #3a3a3a;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 32px;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 12px 8px;
+  border-bottom: 1px solid #ededed;
+  font-size: 14px;
+}
+
+.admin-table th {
+  font-weight: 500;
+  color: #888;
+  font-size: 12px;
+}
+
+.admin-table td {
+  color: #333;
+}
+
+.admin-table .views {
+  color: #888;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-actions button {
+  padding: 6px 12px;
+  border: 1px solid #e3e3e3;
+  background: #fff;
+  font-size: 12px;
+  color: #666;
+}
+
+.admin-actions button:hover {
+  border-color: #111;
+  color: #111;
+}
+
+.admin-actions button.delete:hover {
+  border-color: #e33;
+  color: #e33;
+}
+
+.admin-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #111;
+  color: #fff;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.admin-btn:hover {
+  background: #3a3a3a;
+}
+
+/* EDITOR */
+.editor-wrap {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.editor-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.editor-field {
+  margin-bottom: 24px;
+}
+
+.editor-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.editor-field input,
+.editor-field select {
+  width: 100%;
+  height: 44px;
+  border: 1px solid #e0e0e0;
+  padding: 0 14px;
+  font-size: 14px;
+  outline: none;
+}
+
+.editor-field input:focus,
+.editor-field select:focus {
+  border-color: #111;
+}
+
+.editor-thumb-preview {
+  margin-top: 12px;
+}
+
+.editor-thumb-preview img {
+  max-width: 300px;
+  height: auto;
+  border: 1px solid #ededed;
+}
+
+.editor-content {
+  width: 100%;
+  min-height: 500px;
+  border: 1px solid #e0e0e0;
+  padding: 16px;
+  font-size: 15px;
+  line-height: 1.7;
+  resize: vertical;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.editor-content:focus {
+  border-color: #111;
+  outline: none;
+}
+
+.editor-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.editor-buttons button {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+}
+
+.editor-buttons .save {
+  background: #fff;
+  border: 1px solid #e3e3e3;
+  color: #666;
+}
+
+.editor-buttons .save:hover {
+  border-color: #111;
+  color: #111;
+}
+
+.editor-buttons .publish {
+  background: #111;
+  color: #fff;
+}
+
+.editor-buttons .publish:hover {
+  background: #3a3a3a;
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 13px;
+  z-index: 300;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.toast.show {
+  opacity: 1;
+}
+
+/* RESPONSIVE */
+@media (max-width: 860px) {
+  .wrap,
+  .gnb-inner,
+  .footer-inner,
+  .footer-bottom {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px 22px;
+  }
+
+  .landing-links {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .landing-link {
+    padding: 16px 40px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 540px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .article-title {
+    font-size: 22px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+  }
+}

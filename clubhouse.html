@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clubhouse</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Noto+Sans+KR:wght@400;500;700&family=DM+Sans:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #fff;
+    color: #111;
+    font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 44px;
+  }
+
+  /* GNB */
+  .gnb {
+    border-bottom: 1px solid #ededed;
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .gnb-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 44px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .gnb-logo {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    font-size: 19px;
+    color: #111;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .gnb-sub-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+    background: #111;
+    border: none;
+    padding: 9px 20px;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: background 0.18s ease;
+  }
+
+  .gnb-sub-btn:hover { background: #3a3a3a; }
+
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 44px 30px;
+    padding: 56px 0 72px;
+  }
+
+  .card { cursor: pointer; }
+
+  .card-thumb {
+    width: 100%;
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    background: #f2f2f0;
+    margin-bottom: 14px;
+  }
+
+  .card-thumb-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .card:hover .card-thumb-inner { transform: scale(1.03); }
+
+  .p1 { background: #e9ecee; }
+  .p2 { background: #efe9e9; }
+  .p3 { background: #e9eeea; }
+  .p4 { background: #eeeeec; }
+  .p5 { background: #ebe9ee; }
+  .p6 { background: #e7eeee; }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.55;
+    color: #111;
+    letter-spacing: -0.01em;
+    word-break: keep-all;
+    transition: color 0.2s ease;
+  }
+
+  .card:hover .card-title { color: #666; }
+
+  /* PAGINATION */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding-bottom: 80px;
+  }
+
+  .pg-btn {
+    width: 36px; height: 36px;
+    border: 1px solid #e3e3e3;
+    background: #fff;
+    color: #b0b0b0;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.18s ease;
+  }
+
+  .pg-btn.active { background: #111; color: #fff; border-color: #111; }
+  .pg-btn:hover:not(.active) { border-color: #111; color: #111; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid #ededed; }
+
+  .footer-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 36px 44px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .footer-logo {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #111;
+    margin-bottom: 10px;
+  }
+
+  .footer-tagline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: #bbb;
+  }
+
+  .footer-recent-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #c4c4c4;
+    margin-bottom: 14px;
+  }
+
+  .footer-recent a {
+    display: block;
+    font-size: 13px;
+    color: #888;
+    text-decoration: none;
+    margin-bottom: 9px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    word-break: keep-all;
+    line-height: 1.45;
+    transition: color 0.18s ease;
+  }
+
+  .footer-recent a:hover { color: #111; }
+
+  .footer-bottom {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 18px 44px 26px;
+    border-top: 1px solid #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-copy {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: #c4c4c4;
+  }
+
+  .footer-contact {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+
+  .footer-contact:hover { color: #111; }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: #fff;
+    padding: 44px 44px 40px;
+    width: 420px;
+    max-width: calc(100vw - 40px);
+    position: relative;
+  }
+
+  .modal-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #111;
+  }
+
+  .modal-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 26px;
+    line-height: 1.6;
+  }
+
+  .modal-input {
+    width: 100%;
+    height: 44px;
+    border: 1px solid #e0e0e0;
+    padding: 0 14px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    color: #111;
+    outline: none;
+    margin-bottom: 10px;
+    transition: border-color 0.18s ease;
+  }
+
+  .modal-input:focus { border-color: #111; }
+
+  .modal-submit {
+    width: 100%;
+    height: 44px;
+    background: #111;
+    color: #fff;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.18s ease;
+  }
+
+  .modal-submit:hover { background: #3a3a3a; }
+
+  .modal-close {
+    position: absolute;
+    top: 18px; right: 20px;
+    font-size: 18px;
+    color: #ccc;
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1;
+  }
+
+  .modal-close:hover { color: #111; }
+
+  .modal-done {
+    text-align: center;
+    padding: 20px 0 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #111;
+    line-height: 1.8;
+    display: none;
+  }
+
+  @media (max-width: 860px) {
+    .wrap, .gnb-inner, .footer-inner, .footer-bottom { padding-left: 24px; padding-right: 24px; }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 36px 22px; }
+  }
+  @media (max-width: 540px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="bgClose(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div id="modal-form">
+      <div class="modal-title">새 글 알림 받기</div>
+      <div class="modal-sub">새 글이 올라오면 이메일로 알려드립니다. 스팸은 보내지 않습니다.</div>
+      <input class="modal-input" type="email" placeholder="이메일 주소" id="email-input">
+      <button class="modal-submit" onclick="submitEmail()">구독하기</button>
+    </div>
+    <div class="modal-done" id="modal-done">
+      구독되었습니다 ✓<br>
+      <span style="font-size:12px;color:#aaa;">새 글이 올라오면 알려드릴게요.</span>
+    </div>
+  </div>
+</div>
+
+<!-- GNB -->
+<nav class="gnb">
+  <div class="gnb-inner">
+    <a href="#" class="gnb-logo">Clubhouse</a>
+    <button class="gnb-sub-btn" onclick="openModal()">구독하기</button>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-thumb"><div class="card-thumb-inner p1"></div></div>
+      <div class="card-title">오타니 쇼헤이가 재정의하는 야구의 불가능</div>
+    </div>
+
+    <div class="card">
+      <div class="card-thumb"><div class="card-thumb-inner p2"></div></div>
+      <div class="card-title">코디 벨린저의 부활, 그 안에 있는 타격폼 이야기</div>
+    </div>
+
+    <div class="card">
+      <div class="card-thumb"><div class="card-thumb-inner p3"></div></div>
+      <div class="card-title">1986년 월드시리즈 6차전, 야구가 만든 가장 잔인한 순간</div>
+    </div>
+
+    <div class="card">
+      <div class="card-thumb"><div class="card-thumb-inner p4"></div></div>
+      <div class="card-title">피치 클락은 야구를 빠르게 만들었지만, 야구다워졌나</div>
+    </div>
+
+    <div class="card">
+      <div class="card-thumb"><div class="card-thumb-inner p5"></div></div>
+      <div class="card-title">수비 시프트 금지 이후 인플레이 타율은 실제로 올랐나</div>
+    </div>
+
+    <div class="card">
+      <div class="card-thumb"><div class="card-thumb-inner p6"></div></div>
+      <div class="card-title">라이언 헬슬리, 조용히 리그 최고의 마무리가 된 이유</div>
+    </div>
+
+  </div>
+
+  <div class="pagination">
+    <button class="pg-btn active">1</button>
+    <button class="pg-btn">2</button>
+    <button class="pg-btn">3</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Clubhouse</div>
+      <div class="footer-tagline">야구와 커리어에 대한 기록</div>
+    </div>
+    <div>
+      <div class="footer-recent-label">최근 글</div>
+      <div class="footer-recent">
+        <a href="#">오타니 쇼헤이가 재정의하는 야구의 불가능</a>
+        <a href="#">코디 벨린저의 부활, 그 안에 있는 타격폼 이야기</a>
+        <a href="#">1986년 월드시리즈 6차전, 야구가 만든 가장 잔인한 순간</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Clubhouse</span>
+    <a href="mailto:hello@clubhouse.kr" class="footer-contact">hello@clubhouse.kr</a>
+  </div>
+</footer>
+
+<script>
+  const modal = document.getElementById('modal');
+  function openModal() {
+    modal.classList.add('open');
+    setTimeout(() => document.getElementById('email-input').focus(), 100);
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    setTimeout(() => {
+      document.getElementById('modal-form').style.display = 'block';
+      document.getElementById('modal-done').style.display = 'none';
+      document.getElementById('email-input').value = '';
+      document.getElementById('email-input').style.borderColor = '';
+    }, 300);
+  }
+  function bgClose(e) { if (e.target === modal) closeModal(); }
+  function submitEmail() {
+    const el = document.getElementById('email-input');
+    const val = el.value.trim();
+    if (!val || !val.includes('@')) { el.style.borderColor = '#e33'; return; }
+    document.getElementById('modal-form').style.display = 'none';
+    document.getElementById('modal-done').style.display = 'block';
+    setTimeout(closeModal, 2200);
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.querySelectorAll('.pg-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.pg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
