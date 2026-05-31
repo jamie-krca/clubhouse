@@ -34,7 +34,6 @@ input {
 
 /* GNB */
 .gnb {
-  border-bottom: 1px solid #ededed;
   background: #fff;
   position: sticky;
   top: 0;
@@ -49,6 +48,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid #ededed;
 }
 
 .gnb-logo {
@@ -82,7 +82,7 @@ input {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 44px 30px;
-  padding: 56px 0 72px;
+  padding: 80px 0 72px;
 }
 
 .card {
@@ -162,7 +162,7 @@ input {
 
 /* FOOTER */
 footer {
-  border-top: 1px solid #ededed;
+  background: #fff;
 }
 
 .footer-simple {
@@ -174,6 +174,7 @@ footer {
   gap: 8px;
   font-size: 14px;
   color: #888;
+  border-top: 1px solid #ededed;
 }
 
 .footer-inner {
