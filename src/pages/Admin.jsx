@@ -11,6 +11,7 @@ export default function Admin() {
   const [loginError, setLoginError] = useState('')
   const [articles, setArticles] = useState([])
   const [subscribers, setSubscribers] = useState([])
+  const [showSubscribers, setShowSubscribers] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -89,6 +90,15 @@ export default function Admin() {
     fetchArticles()
   }
 
+  function formatDate(dateStr) {
+    const date = new Date(dateStr)
+    return date.toLocaleDateString('ko-KR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  }
+
   if (loading) {
     return (
       <div className="admin-wrap">
@@ -147,7 +157,12 @@ export default function Admin() {
           <div style={{ fontSize: '12px', color: '#888', marginBottom: '4px' }}>총 조회수</div>
           <div style={{ fontSize: '24px', fontWeight: '700' }}>{totalViews.toLocaleString()}</div>
         </div>
-        <div style={{ padding: '16px 24px', border: '1px solid #ededed' }}>
+        <div
+          onClick={() => setShowSubscribers(true)}
+          style={{ padding: '16px 24px', border: '1px solid #ededed', cursor: 'pointer', transition: 'border-color 0.18s' }}
+          onMouseEnter={(e) => e.currentTarget.style.borderColor = '#111'}
+          onMouseLeave={(e) => e.currentTarget.style.borderColor = '#ededed'}
+        >
           <div style={{ fontSize: '12px', color: '#888', marginBottom: '4px' }}>구독자</div>
           <div style={{ fontSize: '24px', fontWeight: '700' }}>{subscribers.length}</div>
         </div>
@@ -190,15 +205,37 @@ export default function Admin() {
         </tbody>
       </table>
 
-      {subscribers.length > 0 && (
-        <>
-          <h2 style={{ fontSize: '18px', fontWeight: '700', marginTop: '48px', marginBottom: '16px' }}>구독자 목록</h2>
-          <ul style={{ fontSize: '14px', color: '#666' }}>
-            {subscribers.map((sub) => (
-              <li key={sub.id} style={{ marginBottom: '8px' }}>{sub.email}</li>
-            ))}
-          </ul>
-        </>
+      {showSubscribers && (
+        <div
+          className="modal-overlay open"
+          onClick={(e) => e.target === e.currentTarget && setShowSubscribers(false)}
+        >
+          <div className="modal" style={{ width: '500px' }}>
+            <button className="modal-close" onClick={() => setShowSubscribers(false)}>×</button>
+            <div className="modal-title">구독자 목록</div>
+            <div className="modal-sub">{subscribers.length}명</div>
+            {subscribers.length === 0 ? (
+              <p style={{ color: '#888', fontSize: '14px' }}>아직 구독자가 없습니다.</p>
+            ) : (
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
+                <thead>
+                  <tr>
+                    <th style={{ textAlign: 'left', padding: '8px 0', borderBottom: '1px solid #ededed', color: '#888', fontWeight: '500' }}>이메일</th>
+                    <th style={{ textAlign: 'right', padding: '8px 0', borderBottom: '1px solid #ededed', color: '#888', fontWeight: '500' }}>구독일</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {subscribers.map((sub) => (
+                    <tr key={sub.id}>
+                      <td style={{ padding: '10px 0', borderBottom: '1px solid #f4f4f4' }}>{sub.email}</td>
+                      <td style={{ padding: '10px 0', borderBottom: '1px solid #f4f4f4', textAlign: 'right', color: '#888' }}>{formatDate(sub.created_at)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        </div>
       )}
     </div>
   )
