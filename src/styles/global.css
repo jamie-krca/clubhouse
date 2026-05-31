@@ -331,16 +331,26 @@ footer {
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 19px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 24px;
   color: #111;
 }
 
-.modal-sub {
+.modal-field {
+  margin-bottom: 16px;
+}
+
+.modal-label {
+  display: block;
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 13px;
-  color: #999;
-  margin-bottom: 26px;
-  line-height: 1.6;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.modal-label .required {
+  color: #e33;
+  margin-left: 2px;
 }
 
 .modal-input {
@@ -348,11 +358,10 @@ footer {
   height: 44px;
   border: 1px solid #e0e0e0;
   padding: 0 14px;
-  font-size: 13px;
-  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-family: 'Noto Sans KR', sans-serif;
   color: #111;
   outline: none;
-  margin-bottom: 10px;
   transition: border-color 0.18s ease;
 }
 
@@ -370,10 +379,11 @@ footer {
   background: #111;
   color: #fff;
   border: none;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   cursor: pointer;
+  margin-top: 8px;
   transition: background 0.18s ease;
 }
 
