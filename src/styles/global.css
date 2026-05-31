@@ -27,9 +27,8 @@ body {
 }
 
 .content-divider {
-  height: 1px;
-  background: #ededed;
-  margin-top: 32px;
+  height: 2px;
+  background: #111;
   margin-bottom: 48px;
 }
 
@@ -64,8 +63,7 @@ input {
 .gnb-inner {
   max-width: 1160px;
   margin: 0 auto;
-  padding: 0 44px;
-  height: 64px;
+  padding: 40px 44px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -102,7 +100,7 @@ input {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 44px 30px;
-  padding-bottom: 72px;
+  padding-bottom: 48px;
 }
 
 .card {
@@ -143,6 +141,7 @@ input {
   letter-spacing: -0.01em;
   word-break: keep-all;
   transition: color 0.2s ease;
+  min-height: 46px;
 }
 
 .card:hover .card-title {
@@ -154,7 +153,7 @@ input {
   display: flex;
   justify-content: center;
   gap: 6px;
-  padding-bottom: 80px;
+  padding-bottom: 48px;
 }
 
 .pg-btn {
@@ -188,13 +187,13 @@ footer {
 .footer-simple {
   max-width: 1160px;
   margin: 0 auto;
-  padding: 32px 44px;
+  padding: 40px 44px;
   display: flex;
   flex-direction: column;
   gap: 8px;
   font-size: 14px;
   color: #888;
-  border-top: 1px solid #ededed;
+  border-top: 2px solid #111;
 }
 
 .footer-inner {
