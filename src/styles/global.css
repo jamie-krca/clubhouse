@@ -109,7 +109,7 @@ input {
 
 .card-thumb {
   width: 100%;
-  aspect-ratio: 3/2;
+  aspect-ratio: 16/9;
   overflow: hidden;
   background: #f2f2f0;
   margin-bottom: 14px;
@@ -215,6 +215,15 @@ footer {
   font-size: 14px;
   color: #888;
   border-top: 2px solid #111;
+}
+
+.footer-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  color: #888;
+  padding-bottom: 40px;
 }
 
 .footer-inner {
